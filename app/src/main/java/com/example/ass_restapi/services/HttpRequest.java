@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpRequest {
     private ApiService service;
-    public String BASE_URL = "http://192.168.1.102:3000/";
+    public String BASE_URL = "http://192.168.1.23:3000/";
 
 
     public HttpRequest(){

@@ -1,10 +1,13 @@
 package com.example.ass_restapi.models;
 
-public class Response <T>{
+public class Response <T> {
 
     private int status;
     private String message;
     private T data;
+
+    public Response() {
+    }
 
     public Response(int status, String message, T data) {
         this.status = status;
@@ -12,12 +15,14 @@ public class Response <T>{
         this.data = data;
     }
 
+
     public int getStatus() {
         return status;
     }
 
     public void setStatus(int status) {
         this.status = status;
+
     }
 
     public String getMessage() {

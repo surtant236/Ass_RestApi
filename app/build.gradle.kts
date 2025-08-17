@@ -36,35 +36,18 @@ android {
 
 dependencies {
 
-    // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-
-// Gson converter
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-
-// OkHttp
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-
-// Logging interceptor
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-
-    // Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-
-// Firebase Authentication
-    implementation("com.google.firebase:firebase-auth")
-
-// Firestore
-    implementation("com.google.firebase:firebase-firestore")
-
-// Realtime Database
-    implementation("com.google.firebase:firebase-database")
-
-// Firebase Storage
-    implementation("com.google.firebase:firebase-storage")
-
-// Firebase Analytics
+    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.android.gms:play-services-auth:21.1.0")
+    implementation ("com.google.firebase:firebase-auth")
+
+
+    implementation ("com.google.code.gson:gson:2.10.1")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
 
 
     implementation(libs.appcompat)
