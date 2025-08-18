@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="180dp"
+    android:layout_width="160dp"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    card_view:cardCornerRadius="16dp"
-    card_view:cardElevation="4dp">
+    android:layout_margin="6dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="3dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/imgFruit"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="Hình ảnh trái cây"
             android:scaleType="centerCrop"
@@ -26,11 +26,11 @@
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:gravity="center_horizontal"
             android:text="Tên trái cây"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
@@ -41,13 +41,13 @@
             android:gravity="center_horizontal"
             android:text="Xuất xứ"
             android:textColor="?android:attr/textColorSecondary"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -56,30 +56,19 @@
                 android:layout_height="wrap_content"
                 android:text="5.000đ"
                 android:textColor="?attr/colorPrimary"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
-            <Space
-                android:layout_width="12dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tvQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/kg"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textSize="14sp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btnAddToCart"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/outline_shopping_cart_24"
-            android:drawablePadding="8dp"
+            android:drawablePadding="6dp"
+            android:backgroundTint="@android:color/transparent"
             android:text="Thêm vào giỏ"
             android:textColor="?attr/colorPrimary" />
 

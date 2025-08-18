@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,10 +21,17 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
 
     private Context context;
     private ArrayList<Fruit> fruits;
+    private OnAddToCartClickListener addToCartListener;
 
-    public FruitAdapter(Context context, ArrayList<Fruit> fruits) {
+    // Interface cho callback thêm vào giỏ hàng
+    public interface OnAddToCartClickListener {
+        void onAddToCart(Fruit fruit);
+    }
+
+    public FruitAdapter(Context context, ArrayList<Fruit> fruits, OnAddToCartClickListener listener) {
         this.context = context;
         this.fruits = fruits;
+        this.addToCartListener = listener;
     }
 
     @NonNull
@@ -36,15 +44,24 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
     @Override
     public void onBindViewHolder(@NonNull FruitViewHolder holder, int position) {
         Fruit fruit = fruits.get(position);
+
+        // set dữ liệu
+        holder.tvName.setText(fruit.getName());
         holder.tvOrigin.setText(fruit.getOrigin());
         holder.tvPrice.setText("Giá: " + fruit.getPrice() + "đ");
-        holder.tvQuantity.setText("Số lượng: " + fruit.getQuantity());
 
         Glide.with(context)
                 .load(fruit.getImage())
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.imgFruit);
+
+        // Xử lý nút thêm vào giỏ hàng
+        holder.btnAddToCart.setOnClickListener(v -> {
+            if (addToCartListener != null) {
+                addToCartListener.onAddToCart(fruit);
+            }
+        });
     }
 
     @Override
@@ -53,15 +70,17 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
     }
 
     public static class FruitViewHolder extends RecyclerView.ViewHolder {
-        TextView tvOrigin, tvPrice, tvQuantity;
+        TextView tvName, tvOrigin, tvPrice;
         ImageView imgFruit;
+        Button btnAddToCart;
 
         public FruitViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvName = itemView.findViewById(R.id.tvName);
             tvOrigin = itemView.findViewById(R.id.tvOrigin);
             tvPrice = itemView.findViewById(R.id.tvPrice);
-            tvQuantity = itemView.findViewById(R.id.tvQuantity);
             imgFruit = itemView.findViewById(R.id.imgFruit);
+            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
 }

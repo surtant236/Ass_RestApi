@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Tên sản phẩm -->
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên sản phẩm"
+        android:inputType="text"
+        android:drawablePadding="8dp"
+        android:padding="8dp" />
+
+    <!-- Giá -->
+    <EditText
+        android:id="@+id/etPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giá"
+        android:inputType="number"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Số lượng -->
+    <EditText
+        android:id="@+id/etQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Số lượng"
+        android:inputType="number"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Xuất xứ -->
+    <EditText
+        android:id="@+id/etOrigin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Xuất xứ"
+        android:inputType="text"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Link ảnh -->
+    <EditText
+        android:id="@+id/etImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Anh"
+        android:inputType="textUri"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Nút lưu -->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="@android:color/white"
+        android:padding="10dp" />
+
+</LinearLayout>

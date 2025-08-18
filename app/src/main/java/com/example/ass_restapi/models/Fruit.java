@@ -6,6 +6,7 @@ public class Fruit {
 
     @SerializedName("_id")
     private String id;
+    private String name;
     private int price;
     private int quantity;
     private String origin;
@@ -13,8 +14,9 @@ public class Fruit {
 
     private String createdAt, updatedAt;
 
-    public Fruit(String id, int price, int quantity, String origin, String image, String createdAt, String updatedAt) {
+    public Fruit(String id, String name, int price, int quantity, String origin, String image, String createdAt, String updatedAt) {
         this.id = id;
+        this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.origin = origin;
@@ -29,6 +31,14 @@ public class Fruit {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPrice() {

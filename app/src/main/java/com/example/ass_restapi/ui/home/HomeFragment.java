@@ -20,7 +20,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
@@ -39,13 +38,34 @@ public class HomeFragment extends Fragment {
 
         // Setup RecyclerView với GridLayoutManager 2 cột
         binding.recyclerViewFruit.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        fruitAdapter = new FruitAdapter(getContext(), (ArrayList<Fruit>) fruitList);
+        fruitAdapter = new FruitAdapter(getContext(), (ArrayList<Fruit>) fruitList, new FruitAdapter.OnAddToCartClickListener() {
+            @Override
+            public void onAddToCart(Fruit fruit) {
+                // Gọi API thêm vào giỏ hàng
+                httpRequest.callApi().ad(fruit.getId(), 1).enqueue(new Callback<Response<Object>>() {
+                    @Override
+                    public void onResponse(Call<Response<Object>> call, retrofit2.Response<Response<Object>> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(getContext(), "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Thêm giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response<Object>> call, Throwable t) {
+                        Toast.makeText(getContext(), "Lỗi khi thêm giỏ hàng", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
         binding.recyclerViewFruit.setAdapter(fruitAdapter);
 
         fetchFruitList();
 
         return root;
     }
+
     private void fetchFruitList() {
         httpRequest.callApi().getListFruits().enqueue(new Callback<Response<ArrayList<Fruit>>>() {
             @Override
@@ -65,8 +85,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
-
 
     @Override
     public void onDestroyView() {
