@@ -10,28 +10,27 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.ass_restapi.R;
 import com.example.ass_restapi.models.Fruit;
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
-
     private Context context;
-    private ArrayList<Fruit> cartItems;
+    private ArrayList<Fruit> cartList;
     private OnCartActionListener listener;
 
-    // callback xử lý cộng/trừ/xóa
     public interface OnCartActionListener {
         void onIncrease(Fruit fruit);
         void onDecrease(Fruit fruit);
         void onRemove(Fruit fruit);
     }
 
-    public CartAdapter(Context context, ArrayList<Fruit> cartItems, OnCartActionListener listener) {
+    public CartAdapter(Context context, ArrayList<Fruit> cartList, OnCartActionListener listener) {
         this.context = context;
-        this.cartItems = cartItems;
+        this.cartList = cartList;
         this.listener = listener;
     }
 
@@ -44,35 +43,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        Fruit fruit = cartItems.get(position);
+        Fruit fruit = cartList.get(position);
 
         holder.tvName.setText(fruit.getName());
         holder.tvPrice.setText(fruit.getPrice() + " đ");
         holder.tvQuantity.setText(String.valueOf(fruit.getQuantity()));
 
-        // Hiển thị ảnh - dùng Glide nếu ảnh là URL
         Glide.with(context)
-                .load(fruit.getImage()) // Đảm bảo Fruit có phương thức getImageUrl()
+                .load(fruit.getImage())
                 .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
                 .into(holder.imgFruit);
 
-        holder.btnIncrease.setOnClickListener(v -> {
-            if (listener != null) listener.onIncrease(fruit);
-        });
-
-        holder.btnDecrease.setOnClickListener(v -> {
-            if (listener != null) listener.onDecrease(fruit);
-        });
-
-        holder.btnRemove.setOnClickListener(v -> {
-            if (listener != null) listener.onRemove(fruit);
-        });
+        holder.btnIncrease.setOnClickListener(v -> listener.onIncrease(fruit));
+        holder.btnDecrease.setOnClickListener(v -> listener.onDecrease(fruit));
+        holder.btnRemove.setOnClickListener(v -> listener.onRemove(fruit));
     }
 
     @Override
     public int getItemCount() {
-        return cartItems.size();
+        return cartList.size();
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
